@@ -38,7 +38,7 @@ class Article implements TimestampedInterface
     /**
      * @var Collection<int, Category>
      */
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;
 
     /**
@@ -200,5 +200,9 @@ class Article implements TimestampedInterface
         $this->featuredImage = $featuredImage;
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->title;
     }
 }
