@@ -41,19 +41,19 @@ class Article implements TimestampedInterface
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;
 
-    /**
-      @var Collection<int, Comment>
-     
+     /**
+    * @var Collection<int, Comment>
+      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'article', orphanRemoval: true)]
     private Collection $comments;
 
     #[ORM\ManyToOne]
-    private ?Media $featuredImage = null;*/
+    private ?Media $featuredImage = null;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        //$this->comments = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,9 +160,9 @@ class Article implements TimestampedInterface
         return $this;
     }
 
-    /**
-      @return Collection<int, Comment>
-    
+    /** 
+    * @return Collection<int, Comment>
+    */
     public function getComments(): Collection
     {
         return $this->comments;
@@ -200,7 +200,7 @@ class Article implements TimestampedInterface
         $this->featuredImage = $featuredImage;
 
         return $this;
-    } */
+    } 
     public function __toString(): string
     {
         return $this->title;
